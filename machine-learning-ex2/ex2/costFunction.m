@@ -22,18 +22,13 @@ grad = zeros(size(theta));
 
 predictions = X * theta;
 predictions = sigmoid(predictions);
-
-for i = 1:m
-  J = J + (-y(i) * log(predictions(i)) - (1 - y(i)) * log(1 - predictions(i)));
-end
-
-J = (1 / m) * J;
-
 cost = 0;
 for i = 1:m
+  J = J + (-y(i) * log(predictions(i)) - (1 - y(i)) * log(1 - predictions(i)));
   cost = cost + (predictions(i) - y(i)) * X(i,:)';
 end
 
+J = (1 / m) * J;
 grad = (1/m) * cost;
 % =============================================================
 
