@@ -64,7 +64,7 @@ Theta2_grad = zeros(size(Theta2));
 
 newY = [];
 for i = 1:m
-  new_y = zeros(1,10);
+  new_y = zeros(1,num_labels);
   new_y(y(i)) = 1;
   newY = [newY; new_y];
 end
@@ -91,6 +91,15 @@ squaredThetas = [sum(sum(tempTheta1.^2)) + sum(sum(tempTheta2.^2))];
 regularizedComponent = (lambda / (2*m)) * squaredThetas;
 
 J += regularizedComponent;
+
+% -------------------------------------------------------------
+
+d3 = predictions - y;
+d2 = (d3 * Theta2) .* (a2 .* (1-a2));
+d2 = d2(:, 2:end);
+Theta2_grad = (d3' * a2) / m;
+Theta1_grad = (d2' * a1) / m;
+
 % =========================================================================
 
 % Unroll gradients
