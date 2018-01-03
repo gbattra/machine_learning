@@ -100,6 +100,14 @@ d2 = d2(:, 2:end);
 Theta2_grad = (d3' * a2) / m;
 Theta1_grad = (d2' * a1) / m;
 
+% Regularized component
+Theta1_temp = Theta1;
+Theta2_temp = Theta2;
+Theta1_temp(:,1) = 0;
+Theta2_temp(:,1) = 0;
+Theta1_grad += (lambda / m) * Theta1_temp;
+Theta2_grad += (lambda / m) * Theta2_temp;
+
 % =========================================================================
 
 % Unroll gradients
