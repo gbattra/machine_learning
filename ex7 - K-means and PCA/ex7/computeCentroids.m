@@ -35,9 +35,9 @@ for c = 1:K
   end
   
   x_sum = sum(x_assigned);
-  x_assigned_size = size(x_assigned,1)
+  x_assigned_size = size(x_assigned,1);
   if x_assigned_size > 0
-    centroids(c,:) = (1 / size(x_assigned,1)) * x_sum;
+    centroids(c,:) = (1 / x_assigned_size) * x_sum;
 end
 
 
